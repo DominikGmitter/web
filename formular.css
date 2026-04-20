@@ -1,0 +1,152 @@
+form {
+    text-align: left;
+    display:none;
+}
+label{
+    font-size: large;
+}
+h1{
+    text-align: center;
+    font-weight: 500;
+    font-style: normal;
+}
+.bg-4{
+    background-color: #2f2f2f;
+    color: white;
+    width: 100%;
+    font-size: large;
+}
+
+p{
+    display: none;
+    text-align: bottom;
+    font-weight: 500;
+    font-style:oblique;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+}
+
+footer {
+    width: 100%;
+    padding: 5px;
+}
+
+.patrick-hand-regular{
+  font-family: "Playfair Display", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+body{
+    font-family: "Playfair Display", cursive;
+    font-weight: 200;
+    font-style: normal;
+}
+.required-label::before{
+    content: "* ";
+    color: red;
+}
+.button:hover {
+  background: lightslategray;
+  color: white;
+}
+
+/* .button {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: medium;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  bottom: 0 !important;
+  line-height: 20px;
+  border: none;
+} */
+
+.navbar-right{
+    margin-bottom: 0;
+}
+
+.navbar {
+    margin-bottom: 0 !important; 
+    border: none; 
+    border-radius: 0;
+}
+
+.navbar-nav {
+    position: relative;
+    z-index: 2;
+}
+ 
+.navbar-nav > li > a,
+.navbar-btn {
+    line-height: 20px; 
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: "Playfair Display", cursive !important;
+    font-size: 24px !important; 
+}
+
+.navbar-btn {
+    margin: 0 !important; /* Odstráni Bootstrap odsadenie */
+    height: 50px;         /* Vyplní celú výšku (50px) */
+    padding: 0 20px;      /* Priestor po bokoch textu */
+    border: none;
+    border-radius: 0;     /* Ostré hrany aby lícovali s okrajom */
+    line-height: 50px;    /* Vertikálne vycentruje text "Formulár" */
+    font-family: "Patrick Hand", cursive !important;
+    font-size: 24px !important;
+}
+
+.jumbotron {
+min-height: calc(100vh - 30px);
+display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  background: url("popradskePleso.webp") center center;
+  background-size: cover;
+  opacity: 0.75;
+  text-align: center;
+  color: white;
+  position: relative;
+  transition: all 0.6s ease-in-out;
+}
+
+.jumbotron h1 {
+  font-size: 125px;
+  margin-bottom: 0;
+}
+
+.jumbotron p {
+  font-size: 30px;
+  margin: 0 0 30px;
+}
+
+.jumbotron.jumbotron-small {
+    min-height: 200px; 
+    padding: 40px 0;   
+    transition: all 0.5s ease; 
+}
+
+.jumbotron.jumbotron-small h1 {
+    font-size: 60px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+overflow-x: hidden
+}
+
+#noscript{
+    text-align: center;
+    font-size: xx-large;
+    position: static;
+    margin-top: 10%;
+}
+
+#main-content{
+    display: none;
+}

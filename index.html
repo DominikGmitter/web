@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zadanieFormular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="formular.css">
+</head>
+<body>
+    <noscript>
+        <div id="noscript">
+            Zapnite si prosim Javascript, pre spravne fungovanie webu.
+         </div>
+    </noscript>
+    <div id="main-content">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#" id="domov">~Dominik_Gmitter</a></li>
+                <li><a href="#">Dalšie zadania - TBD</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="button btn btn-danger navbar-btn">Formulár</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Moja web stránka</h1>
+            <p id="p">Volám sa Dominik Gmitter a som študentom UPJŠ v odbore ISVS<br>Táto webstránka slúži na zadania predmetu Programovanie webových stránok</p>
+        </div>
+    </div>
+    <div class="container">
+    <form class="form-horizontal" id="formular" action="https://di.ics.upjs.sk/temp/form/formmail.php" method="post">
+        <div class="form-group">
+            <h1>Pripomienkový formulár</h1>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-m-2">Meno:</label>
+            <div class="col-m-10">
+                <input name="meno" id="meno" type="text" class="form-control" placeholder="Zadajte svoje meno">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label required-label col-m-2 " for="textArea">Pripomienka:</label>
+            <div class="col-m-10">
+                <textarea name="pripomienka" rows="5" class="form-control required" id="textArea" placeholder="Nepáči sa mi tvoja stránka"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-m-offset-2 col-m-10">
+                <div class="checkbox">
+                    <label><input name="odpoved" type="checkbox">Odpoved</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="emailSkupina">
+            <label class="control-label col-m-2" for="email">Email:</label>
+            <div class="col-m-10">
+                <input name="email" type="email" class="form-control" id="email" placeholder="Zadajte svoj email">
+            </div>
+        </div>
+        <input type="hidden" name="prijemca" value="dominik.gmitter@student.upjs.sk">
+        <div class="form-group">
+            <div class="col-m-offset-2 col-m-10">
+                <input type="submit" class="btn btn-primary" value="Odoslať">
+                <input type="reset" class="btn btn-danger" value="Vymazať">
+            </div>
+        </div>
+    
+    </form>
+    <footer class="bg-4 text-center">
+            Vytvorené študentom UPJŠ Dominikom Gmitterom na predmet Programovanie webových stránok | 2026
+    </footer>
+    </div>
+    <script>
+        //mas javascript? - ak hej ukaz stranku
+        $(document).ready(function() {
+            $("#main-content").show();
+        });
+        //ukaze formular a zmensi jumbotron
+        function ukazFormular() {
+            $("#formular").fadeToggle(500);
+            $(".jumbotron").toggleClass("jumbotron-small");
+            $(".button").toggleClass("button-small");
+        }
+        //schova formular a zvacsi jumbotron
+        function schovajFormular(){
+            $(".jumbotron").fadeIn("jumbotron");
+            $(".button").fadeIn("button");
+        }        
+        //ukaze kratky odstavec o mne pri nacitani stranky
+        $(window).on("load",function() {
+            $("#p").delay(1000).fadeIn("slow");
+        });
+        //ak stlacim tlacitko formular ukaze formular
+        $(document).ready(function() {
+            $('button').click(function() { 
+                ukazFormular();
+             })
+          });
+        //ak je formular otvoreny zatvor ho a vice versa
+        $(document).ready(function() {
+            $('#domov').click(function(){
+                if($("#formular").is(":visible")){
+                    ukazFormular()
+                } else {
+                    schovajFormular();
+                }
+            })
+        });
+        //validacia ak odpoved==true > email:required;
+        $(document).ready(function(){
+            $('input[name="odpoved"]').on('change',function(){
+                let emailNazov = $("label[for='email']");
+                if($(this).is(":checked")){
+                    emailNazov.addClass('required-label');
+                } else {
+                    emailNazov.removeClass('required-label');
+                }
+            });
+        });
+        //custom validator na email, kedze built-in ignoruje domenu
+        $.validator.addMethod('emailv2',function(value,element){
+            return this.optional(element) || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/.test(value);
+        }, "E-mail musí obsahovať platný formát meno@email.domena");
+        //validator na required
+        $(document).ready(function(){
+            $("#formular").validate({
+                rules: {
+                    meno:{
+                        required:false
+                    },
+                    pripomienka: {
+                        required:true
+                    },
+                    email:{
+                        emailv2:true,
+                        required:function(element){
+                            return $("input[name='odpoved']").is(':checked');
+                        }
+                    }
+                },
+                messages:{
+                    meno:"Zadajte svoje meno",
+                    pripomienka:"Zadajte pripomienku",
+                    email: {
+                        required:"Zadajte emailovu adresu",
+                        email:'Format nie je spravny, pr.example@example.com'
+                    } 
+                }
+            });
+        })
+    </script>
+</body>
+</html>
